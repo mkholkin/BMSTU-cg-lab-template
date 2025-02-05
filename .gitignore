@@ -1,0 +1,8 @@
+.DS_Store
+.idea/
+.qtcreator/
+__pycache__/
+.pytest_cache/
+venv/
+*.project
+*.project.user
