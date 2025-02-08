@@ -3,6 +3,8 @@
 .qtcreator/
 __pycache__/
 .pytest_cache/
+.mypy_cache/
 venv/
 *.project
 *.project.user
+image.png
