@@ -1,5 +1,3 @@
-import os
-
 from typing import TYPE_CHECKING
 
 from src.controller.base import BaseController
@@ -24,5 +22,4 @@ class MainController(BaseController):
         self.view.render_image(self.model.image)
 
     def save_image(self) -> None:
-        print("saving")
         self.model.image.save("./image.png")
