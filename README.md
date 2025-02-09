@@ -1,9 +1,22 @@
-Запусть приложение
+> Установить зависимости
+>```
+>python -m pip install -r requirements.txt
+>```
+
+Запусть приложение c GUI
+
 ```shell
-python run.py
+python main-gui.py
+```
+
+Запусть CLI версию приложения
+
+```shell
+python main-cli-debug.py
 ```
 
 Запустить юнит тесты
+
 ```shell
-python run_tests.py
+python -m mypy tests/
 ```

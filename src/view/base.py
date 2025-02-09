@@ -1,6 +1,6 @@
+from abc import ABC
 from typing import TYPE_CHECKING, Protocol
 
-from abc import ABC
 from PySide6.QtWidgets import QWidget
 
 if TYPE_CHECKING:

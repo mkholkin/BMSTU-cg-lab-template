@@ -1,5 +1,6 @@
-from PySide6.QtGui import QImage, QPainter, QPen, QBrush, QColor, QPolygon
 from PySide6.QtCore import QPoint
+from PySide6.QtGui import QImage, QPainter, QPen, QBrush, QColor, QPolygon
+
 
 class DataModel:
     image: QImage

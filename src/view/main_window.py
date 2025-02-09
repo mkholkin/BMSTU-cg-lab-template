@@ -1,9 +1,9 @@
-from PySide6.QtWidgets import QMainWindow, QGraphicsScene
 from PySide6.QtGui import QImage, QPixmap
+from PySide6.QtWidgets import QMainWindow, QGraphicsScene
 
 from src.controller.main_controller import MainController
-from src.view.ui.ui_main_window import Ui_MainWindow
 from src.view.base import BaseView
+from src.view.ui.ui_main_window import Ui_MainWindow
 
 
 class MainWindowView(BaseView):

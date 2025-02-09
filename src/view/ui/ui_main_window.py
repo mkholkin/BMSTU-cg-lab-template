@@ -15,11 +15,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGraphicsView, QMainWindow, QMenuBar,
-    QPushButton, QSizePolicy, QStatusBar, QWidget)
+from PySide6.QtWidgets import (QApplication, QGraphicsView, QHBoxLayout, QMainWindow,
+    QMenuBar, QPushButton, QSizePolicy, QStatusBar,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow: QMainWindow) -> None:
+    def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(940, 671)
@@ -30,15 +31,35 @@ class Ui_MainWindow(object):
         MainWindow.setSizePolicy(sizePolicy)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.run_button = QPushButton(self.centralwidget)
-        self.run_button.setObjectName(u"run_button")
-        self.run_button.setGeometry(QRect(230, 570, 100, 32))
-        self.save_button = QPushButton(self.centralwidget)
-        self.save_button.setObjectName(u"save_button")
-        self.save_button.setGeometry(QRect(580, 570, 100, 32))
+        self.verticalLayout = QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setObjectName(u"verticalLayout")
         self.graphicsView = QGraphicsView(self.centralwidget)
         self.graphicsView.setObjectName(u"graphicsView")
-        self.graphicsView.setGeometry(QRect(10, 10, 921, 551))
+
+        self.verticalLayout.addWidget(self.graphicsView)
+
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.run_button = QPushButton(self.centralwidget)
+        self.run_button.setObjectName(u"run_button")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.run_button.sizePolicy().hasHeightForWidth())
+        self.run_button.setSizePolicy(sizePolicy1)
+
+        self.horizontalLayout.addWidget(self.run_button)
+
+        self.save_button = QPushButton(self.centralwidget)
+        self.save_button.setObjectName(u"save_button")
+        sizePolicy1.setHeightForWidth(self.save_button.sizePolicy().hasHeightForWidth())
+        self.save_button.setSizePolicy(sizePolicy1)
+
+        self.horizontalLayout.addWidget(self.save_button)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -53,7 +74,7 @@ class Ui_MainWindow(object):
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
-    def retranslateUi(self, MainWindow: QMainWindow) -> None:
+    def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.run_button.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0440\u0442", None))
         self.save_button.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
