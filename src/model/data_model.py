@@ -15,5 +15,5 @@ class DataModel:
         painter.setBrush(QBrush(QColor("red")))
 
         painter.drawPolygon(QPolygon([QPoint(0, 0), QPoint(100, 60), QPoint(60, 100)]))
-        
+
         painter.end()

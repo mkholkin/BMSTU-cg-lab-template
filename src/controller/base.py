@@ -7,9 +7,9 @@ if TYPE_CHECKING:
 
 
 class BaseController(ABC):
-    view: 'BaseView'
     model: 'DataModel'
+    view: 'BaseView'
 
-    def __init__(self, view: 'BaseView', model: 'DataModel'):
-        self.view = view
+    def __init__(self, model: 'DataModel', view: 'BaseView'):
         self.model = model
+        self.view = view
