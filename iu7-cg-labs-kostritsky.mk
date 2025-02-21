@@ -28,36 +28,45 @@
 #
 # При невозможности/нежелании генерировать такой файл автоматически допускается ручное заполнение "на глаз" с одним тестом и минимальным покрытием
 
-ready/stud-unit-test-report-prev.json: tests/stud-unit-test-report-prev.json
+ready/stud-unit-test-report-prev.json: tests/results/stud-unit-test-report.json
 	mkdir -p ./ready
-	cp tests/stud-unit-test-report.json ready/stud-unit-test-report-prev.json
+	cp tests/results/stud-unit-test-report.json ready/stud-unit-test-report-prev.json
 
 # Положить на проверку программу из питоновских скриптов
-ready/main-cli-debug.py: main-cli-debug.py src
+ready/main-cli.py: main-cli.py src
 	mkdir -p ./ready
 	cp -r ./src ./ready
-	cp main-cli-debug.py ready/main-cli-debug.py
+	cp main-cli.py ready/main-cli.py
 
 # ИЛИ
 
 # Очистка
-.PHONY: clean
+.PHONY: clean func_testing gui_testing
 clean:
-	$(RM) -r ./ready/*
+	$(RM) ready/main-gui.py
+	$(RM) ready/main-cli.py
+	$(RM) -r ready/src
 
 # --
+
+gui-testing:
+	exit 66
+
+func-testing:
+	mkdir -p ./ready/pics
+	QT_QPA_PLATFORM=offscreen PYTHONPATH="$PYTHONPATH:." python func_tests/run_tests.py
 
 # Положить на проверку программу из питоновских скриптов
 ready/main-gui.py: main-gui.py src
 	mkdir -p ./ready
+	./scripts/generate_forms.sh
 	cp -r ./src ./ready
 	cp main-gui.py ready/main-gui.py
-	
-ready/app-gui-debug:
+
 
 # Реализация по желанию - удалить цели, если нет реализации
 
 # Сборка и запуск модульных тестов прямо на сервере
 ready/stud-unit-test-report.json:
-	python run_tests.py
-	cp tests/stud-unit-test-report-prev.json stud-unit-test-report.json
+	python -m pytest tests/
+	cp tests/results/stud-unit-test-report.json ready/stud-unit-test-report.json
